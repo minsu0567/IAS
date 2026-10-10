@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets
+.env
+*.token
+secrets.*
+
+# Model weights — shared via Google Drive links in README
+*.bin
+*.pckl
+*.pth
+*.ckpt
+*.safetensors
+
+# Run outputs (produced under /content or Drive, never committed)
+*.log
+output/
+checkpoints_draem/
+
+# Hugging Face upload notebook — weights are shared via Google Drive instead
+notebooks/push_to_hub.ipynb
+
+# OS / OneDrive
+.DS_Store
+Thumbs.db
+desktop.ini
