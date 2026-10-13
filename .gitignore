@@ -32,3 +32,8 @@ notebooks/push_to_hub.ipynb
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Local-only anomaly map exporters (not part of this repository)
+pre-processing/branch_analysis.py
+pre-processing/export_patchcore_maps.py
+pre-processing/export_draem_maps.py

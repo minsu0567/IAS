@@ -17,6 +17,7 @@ normal image + inpainting mask + reference defect
 [Downstream]       DRAEM training on synthesized defects → image / pixel AUROC, AP, F1-max
       │
 [Analysis]         pixel-level anomaly score histograms: DRAEM (ours) / PatchCore / EfficientAD
+                   heatmaps normalized by each method's pixel F1-max threshold (over-segmentation vs. GT)
 ```
 
 ## Model weights
@@ -89,6 +90,11 @@ The datasets are not included in this repository. The default defect type is `mo
 |---|---|---|
 | 1 | `IAS_application.ipynb` | train SD → copy checkpoints to Drive → multi-seed generation → ROI restore → visual check |
 | 2 | `Downstream_task_application.ipynb` | train DRAEM → copy checkpoints to Drive → evaluate → print metrics |
+| 3 | `heatmap_three_methods.ipynb` | EfficientAD / PatchCore / DRAEM heatmaps on one scale (1.0 = each method's pixel F1-max threshold), Pred/GT area ratio |
+
+`heatmap_three_methods.ipynb` reads raw float anomaly maps (`{subdir}/{name}.tiff`) of the three methods,
+aligns them to the PatchCore `Resize → CenterCrop` frame and computes each method's pixel F1-max threshold on
+that common frame. The F1-max threshold is chosen on the test set (oracle), so it is for comparison only.
 
 Training writes checkpoints to the Colab local disk (`/content/sd_train_output`, `/content/draem_train_output`);
 the next cell copies them to `MyDrive/Project-IAS/model/` with `!cp -r`, and generation / evaluation read them
